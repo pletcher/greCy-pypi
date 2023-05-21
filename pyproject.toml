@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "grecy_josesmooth"
+version = "3.5.2"
+authors = [
+  { name="Jacobo Myerston", email="jmyerston@ucsd.edu" },
+]
+description = "This project trains four spaCy models using the ancient Greek Universal Dependency treebanks Proiel and Perseus."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Common Public License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/jmyerston/greCy"
+"Bug Tracker" = "https://github.com/jmyerston/greCy/issues"
