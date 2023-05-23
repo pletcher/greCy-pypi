@@ -3,7 +3,7 @@ import subprocess
 import time
 import sys
 import os
-from cli.connections import access_to
+from .utilities.connections import access_to
 
 app = typer.Typer()
 
