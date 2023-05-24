@@ -1,5 +1,0 @@
-# This is an implicit value, here for clarity
---index-url https://pypi.python.org/simple/
-
-click<9.0.0,>=7.1.1
-typer>=0.3.0,<0.8.0

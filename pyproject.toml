@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "grecy_josesmooth"
-version = "3.5.13"
+version = "3.6.3"
 description = "This project trains four spaCy models using the ancient Greek Universal Dependency treebanks Proiel and Perseus."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -17,9 +17,9 @@ classifiers = [
     "License :: OSI Approved :: Common Public License",
     "Operating System :: OS Independent",
 ]
+
 dependencies = [
-    "click>=7.1.1,<9.0.0",
-    "typer>=0.3.0,<0.8.0",
+    "spacy==3.5.3",
 ]
 
 [project.urls]
