@@ -11,7 +11,7 @@ app = typer.Typer()
 @app.command()
 def install(model: str):
 
-    models = ["grc_proiel_sm", "grc_proiel_md", "grc_perseus_lg", "grc_proiel_trf"]
+    models = ["grc_perseus_sm","grc_perseus_lg","grc_perseus_trf","grc_proiel_sm","grc_proiel_lg","grc_proiel_trf"]
 
     hf_url = "https://huggingface.co/"
 
@@ -79,7 +79,7 @@ def install(model: str):
 @app.command()
 def uninstall(model: str):
 
-    models = ["grc_proiel_sm", "grc_proiel_md", "grc_perseus_lg", "grc_proiel_trf"]
+    models = ["grc_perseus_sm","grc_perseus_lg","grc_perseus_trf","grc_proiel_sm","grc_proiel_lg","grc_proiel_trf"]
 
     if model in models:
 
