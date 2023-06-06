@@ -1,12 +1,9 @@
 import typer
 import subprocess
-import time
 import sys
-import os
 from .utilities.connections import access_to
 
 app = typer.Typer()
-
 
 @app.command()
 def install(model: str):
