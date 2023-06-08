@@ -26,7 +26,7 @@ The models can be installed from the terminal with the commands below:
 ```
 python -m grecy install MODEL
 ```
-where you replace MODEL by any of the model names listed above.  The suffixes after the corpus name _sm, _lg, and _trf indicate the size of the model which directly depend on the word embeddings used to train the models. The smallest models end in _sm (small) and are the less accurate ones: they are good for testing and building lightweight apps. The _lg and _trf are the large and transformers models which are more accurate. The _lg were trained using fasttext word vectors in the spaCy floret version, and the _trf models were using a special version of BERT, pretained by ourselves with the largest Ancient Greek corpus available in the web. 
+where you replace MODEL by any of the model names listed above.  The suffixes after the corpus name _sm, _lg, and _trf indicate the size of the model, which directly depends on the word embeddings used to train the models. The smallest models end in _sm (small) and are the less accurate ones: they are good for testing and building lightweight apps. The _lg and _trf are the large and transformer models which are more accurate. The _lg were trained using floret word vectors, and the _trf models use a special version of BERT that was pretrained with the largest Ancient Greek corpus available in the web. 
 
 
 ### Loading
@@ -45,7 +45,7 @@ spaCy is a powerful NLP library with many applications. The most basic of its fu
 
 ```
 import spacy
-nlp = spacy.load("grc_proiel_sm")
+nlp = spacy.load("grc_proiel_trf")
 
 text = "καὶ πρὶν μὲν ἐν κακοῖσι κειμένην ὅμως ἐλπίς μʼ ἀεὶ προσῆγε σωθέντος τέκνου ἀλκήν τινʼ εὑρεῖν κἀπικούρησιν δόμον"
 
@@ -58,7 +58,7 @@ for token in doc:
 
 #### The apostrophe issue
 
-Unfortunaly, there is no consensus among the different internet projects that offer ancient Greek texts about how to represent the Ancient Greek apostrophe. Modern Greek simply uses the regular apostrophe, but ancient texts available in Perseus and Perseus under Philologic use various unicode characters for the apostrophe. Instead of the apostrophe, we find the Greek koronis, modifier letter apostrophe, and right single quotation mark. Provisionally, I have opted to use modifier letter apostrophe in the corpus with which I trained the models. This means, that if you want the greCy models to properly handle the apostrophe you have to make sure that the Ancient Greek texts that you are processing use the modifier letter apostrophe **ʼ** (U+02BC ). Otherwise the models will fail to lemmatize and tag some words in your texts that ends with an 'apostrophe'.
+Unfortunately, there is no consensus how to represent the Ancient Greek apostrophe. Modern Greek simply uses the regular apostrophe, but ancient texts available in Perseus and Perseus under Philologic use various unicode characters for the apostrophe. Instead of the apostrophe, we find the 'Greek koronis', 'modifier letter apostrophe', and 'right single quotation mark.' Provisionally, I have opted to use 'modifier letter apostrophe' in the corpora with which I trained the models. This means that, if you want the greCy models to properly handle the apostrophe, you have to make sure that the Ancient Greek texts that you are processing use the modifier letter apostrophe **ʼ** (U+02BC ). Otherwise the models will fail to lemmatize and tag some words in your texts that ends with an 'apostrophe'.
 
 
 
