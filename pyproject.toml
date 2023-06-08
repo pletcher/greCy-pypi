@@ -4,17 +4,17 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "grecy"
-version = "3.5.2"
+version = "1.0"
 description = "This project trains four spaCy models using the ancient Greek Universal Dependency treebanks Proiel and Perseus."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = {file = "LICENSE.txt"}
 authors = [
   { name="Jacobo Myerston", email="jmyerston@ucsd.edu" },
 ]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: Common Public License",
+    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
 
