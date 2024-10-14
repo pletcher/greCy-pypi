@@ -1,7 +1,6 @@
 import typer
-import subprocess
-import sys
-from .utilities.connections import access_to
+import os
+from grecy.utilities.connections import access_to
 
 app = typer.Typer()
 
@@ -27,47 +26,14 @@ def install(model: str):
         pip_command = "python -m pip install " + https
 
         try:
-            process = subprocess.Popen(pip_command.split(" "),
-                                       bufsize=1,
-                                       stdout=subprocess.PIPE,
-                                       stderr=subprocess.PIPE,
-                                       universal_newlines=True)
+            os.system(pip_command)
+
         except Exception as e:
 
-            print(f'There is a problem with  the command: {pip_command}')
+            print(f'There is a problem installing the model: {pip_command}')
             print(f'Below the related information:')
             print(f'{str(e)}')
 
-        else:
-
-            finished = process.poll()
-
-            if not finished:
-
-                print('\n' + f'Installing {model}.....')
-                print('\n' + f'Please wait, this could take some minutes.....' + '\n')
-
-                while True:
-
-                    msg = process.stdout.readline()
-                    print(msg.strip())
-                    return_code = process.poll()
-                    if return_code is not None:
-                        # The model was successfully installed
-                        # Printing the rest of the installation's output:
-                        for msg in process.stdout.readlines():
-                            print(msg.strip())
-                        break
-
-            else:
-                print(f'The model: {model} can not be installed' + '\n')
-                print("Please, check the model's name in the address below." + '\n')
-                print(https + '\n')
-                print('Error CODE', error, '\n')
-                # The model can not be installed
-                # Printing the rest of the error's output:
-                for msg in process.stderr.readline():
-                    print(msg)
     else:
         print('\n' + f'Please, check the model required. The options in greCy are:')
         print([model for model in models])
@@ -83,42 +49,15 @@ def uninstall(model: str):
         pip_command = "python -m pip uninstall --yes " + model
 
         try:
-            process = subprocess.Popen(pip_command.split(" "),
-                                       bufsize=1,
-                                       stdout=subprocess.PIPE,
-                                       stderr=subprocess.PIPE,
-                                       universal_newlines=True)
+            os.system(pip_command)
+
         except Exception as e:
 
-            print(f'There is a problem with the command: {pip_command}')
+            print(f'There is a problem uninstalling: {model}')
             print(f'Below the related information:')
             print(f'{str(e)}')
-
-        else:
-
-            error = process.stderr.readline()
-
-            if error:
-                print(error)
-                exit(0)
-
-            else:
-
-                while True:
-
-                    msg = process.stdout.readline()
-                    print(msg)
-                    return_code = process.poll()
-
-                    if return_code is not None:
-                        # The model has been uninstalled.
-                        # Printing the rest of the output:
-                        for msg in process.stdout.readlines():
-                            print(msg)
-                        break
     else:
-        print(f'The model: {model} can not be uninstalled' + "\n")
-        print(f'Please, check the model. The options in greCy are:')
+        print('\n' + f'Please, check the model required. The options in greCy are:')
         print([model for model in models])
 
 if __name__ == "__main__":
