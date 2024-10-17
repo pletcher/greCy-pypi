@@ -1,23 +1,40 @@
 Metadata-Version: 2.1
 Name: grecy
-Version: 3.5.2
-Summary: This project trains four spaCy models using the ancient Greek Universal Dependency treebanks Proiel and Perseus.
+Version: 3.0
+Summary: grecy installs six ancient Greek spaCy models that were trained using the Universal Dependency Proiel and Perseus treebanks.
 Author-email: Jacobo Myerston <jmyerston@ucsd.edu>
-License: This work is licensed under the Creative Commons Attribution-NonCommercial-
-        ShareAlike 3.0 Generic License. To view a copy of this license, visit
+License: MIT License
         
-        http://creativecommons.org/licenses/by-nc-sa/3.0/
+        Copyright (c) 2023 Jacobo Myerston
         
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
         
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
         
 Project-URL: Homepage, https://github.com/jmyerston/greCy
 Project-URL: Bug Tracker, https://github.com/jmyerston/greCy/issues
 Classifier: Programming Language :: Python :: 3
-Classifier: License :: OSI Approved :: Common Public License
+Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
-Requires-Python: >=3.9
+Requires-Python: >=3.10
 Description-Content-Type: text/markdown
 License-File: LICENSE.txt
+Requires-Dist: spacy<4.0.0,>=3.5
+Requires-Dist: typer>=0.7.0
 
 # greCy
 ## Ancient Greek models for spaCy
@@ -47,7 +64,7 @@ The models can be installed from the terminal with the commands below:
 ```
 python -m grecy install MODEL
 ```
-where you replace MODEL by any of the model names listed above.  The suffixes after the corpus name _sm, _lg, and _trf indicate the size of the model which directly depend on the word embeddings used to train the models. The smallest models end in _sm (small) and are the less accurate ones: they are good for testing and building lightweight apps. The _lg and _trf are the large and transformers models which are more accurate. The _lg were trained using fasttext word vectors in the spaCy floret version, and the _trf models were using a special version of BERT, pretained by ourselves with the largest Ancient Greek corpus available in the web. 
+where you replace MODEL by any of the model names listed above.  The suffixes after the corpus name _sm, _lg, and _trf indicate the size of the model, which directly depends on the word embeddings used to train the models. The smallest models end in _sm (small) and are the less accurate ones: they are good for testing and building lightweight apps. The _lg and _trf are the large and transformer models which are more accurate. The _lg were trained using floret word vectors, and the _trf models use a special version of BERT that was pretrained with the largest Ancient Greek corpus available in the web. 
 
 
 ### Loading
@@ -66,7 +83,7 @@ spaCy is a powerful NLP library with many applications. The most basic of its fu
 
 ```
 import spacy
-nlp = spacy.load("grc_proiel_sm")
+nlp = spacy.load("grc_proiel_trf")
 
 text = "καὶ πρὶν μὲν ἐν κακοῖσι κειμένην ὅμως ἐλπίς μʼ ἀεὶ προσῆγε σωθέντος τέκνου ἀλκήν τινʼ εὑρεῖν κἀπικούρησιν δόμον"
 
@@ -79,7 +96,7 @@ for token in doc:
 
 #### The apostrophe issue
 
-Unfortunaly, there is no consensus among the different internet projects that offer ancient Greek texts about how to represent the Ancient Greek apostrophe. Modern Greek simply uses the regular apostrophe, but ancient texts available in Perseus and Perseus under Philologic use various unicode characters for the apostrophe. Instead of the apostrophe, we find the Greek koronis, modifier letter apostrophe, and right single quotation mark. Provisionally, I have opted to use modifier letter apostrophe in the corpus with which I trained the models. This means, that if you want the greCy models to properly handle the apostrophe you have to make sure that the Ancient Greek texts that you are processing use the modifier letter apostrophe **ʼ** (U+02BC ). Otherwise the models will fail to lemmatize and tag some words in your texts that ends with an 'apostrophe'.
+Unfortunately, there is no consensus how to represent the Ancient Greek apostrophe. Modern Greek simply uses the regular apostrophe, but ancient texts available in Perseus and Perseus under Philologic use various unicode characters for the apostrophe. Instead of the apostrophe, we find the 'Greek koronis', 'modifier letter apostrophe', and 'right single quotation mark.' Provisionally, I have opted to use 'modifier letter apostrophe' in the corpora with which I trained the models. This means that, if you want the greCy models to properly handle the apostrophe, you have to make sure that the Ancient Greek texts that you are processing use the modifier letter apostrophe **ʼ** (U+02BC ). Otherwise the models will fail to lemmatize and tag some words in your texts that ends with an 'apostrophe'.
 
 
 

@@ -1,6 +1,6 @@
 import typer
 import os
-from grecy.utilities.connections import access_to
+from grecy.connections import access_to
 
 app = typer.Typer()
 
